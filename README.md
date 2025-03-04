@@ -1,4 +1,4 @@
-# Gilmore Girls Application
+# Movies Application
 Este repositório consiste na implementação de uma aplicação, utilizando a linguagem Java que consome uma API. O mesmo foi feito com base nas aulas do módulo de estudo: <b/> "Java Web: crie aplicações usando Spring Boot".
 
 ### Especificações Técnicas ✔️
