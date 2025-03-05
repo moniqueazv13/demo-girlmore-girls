@@ -3,13 +3,14 @@ package com.example.demo.principal;
 import com.example.demo.model.DadosEpisodio;
 import com.example.demo.model.DadosSerie;
 import com.example.demo.model.DadosTemporada;
+import com.example.demo.model.Episodio;
 import com.example.demo.service.ConsumoApi;
 import com.example.demo.service.ConverteDados;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class Principal {
 
@@ -47,12 +48,18 @@ public class Principal {
 
         List<DadosEpisodio> dadosEpisodios = temporadas.stream()
                 .flatMap(t -> t.episodios().stream())
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
         System.out.println("\n TOP 5 EPISÓDIOS: ");
         dadosEpisodios.stream()
                 .filter(e -> !e.avaliacao().equalsIgnoreCase("N/A"))
                 .sorted(Comparator.comparing(DadosEpisodio::avaliacao).reversed())
                 .limit(5)
                 .forEach(System.out::println);
+
+        List<Episodio> episodios = temporadas.stream()
+                .flatMap(t -> t.episodios().stream()
+                        .map(d -> new Episodio(t.numero(), d))
+                ).toList();
+        episodios.forEach(System.out::println);
     }
 }
